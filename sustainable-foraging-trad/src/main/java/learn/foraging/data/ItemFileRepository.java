@@ -17,10 +17,10 @@ public class ItemFileRepository implements ItemRepository {
         this.filePath = filePath;
     }
 
-    @Override
-    public List<Item> findByCategory(Category category) {
-        return null;
-    }
+//    @Override
+//    public List<Item> findByCategory(Category category) {
+//        return null;
+//    }
 
     @Override
     public List<Item> findAll() {

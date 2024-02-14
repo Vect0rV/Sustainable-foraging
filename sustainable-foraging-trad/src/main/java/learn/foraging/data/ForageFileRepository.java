@@ -99,7 +99,7 @@ public class ForageFileRepository implements ForageRepository {
         result.setKilograms(Double.parseDouble(fields[3]));
 
         Forager forager = new Forager();
-        forager.setId(Integer.parseInt(fields[1]));
+        forager.setId(fields[1]);
         result.setForager(forager);
 
         Item item = new Item();

@@ -18,7 +18,7 @@ public enum MainMenuOption {
 
     private MainMenuOption(int value, String message, boolean hidden) {
         this.value = value;
-
+        this.message = message;
         this.hidden = hidden;
     }
 

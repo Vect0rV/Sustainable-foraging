@@ -1,7 +1,7 @@
 package learn.foraging.models;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
+import java.math.*;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -15,6 +15,10 @@ public class Forage {
 
     public Forage() {
     }
+
+//    public Forage(LocalDate date) {
+//        this.date = date;
+//    }
 
     public String getId() {
         return id;
@@ -63,5 +67,8 @@ public class Forage {
         BigDecimal kilos = new BigDecimal(kilograms).setScale(4, RoundingMode.HALF_UP);
         return item.getDollarPerKilogram().multiply(kilos);
 
+    }
+
+    public void Forage(Forage forage) {
     }
 }

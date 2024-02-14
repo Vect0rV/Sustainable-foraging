@@ -30,14 +30,14 @@ public class ForageService {
 
     public List<Forage> findByDate(LocalDate date) {
 
-        Map<Integer, Forager> foragerMap = foragerRepository.findAll().stream()
-                .collect(Collectors.toMap(i -> i.getId(), i -> i));
+        Map<Integer, Forage> foragerMap = forageRepository.findByDate(date).stream()
+                .collect(Collectors.toMap(i -> Integer.valueOf(i.getId()), i -> i));
         Map<Integer, Item> itemMap = itemRepository.findAll().stream()
                 .collect(Collectors.toMap(i -> i.getId(), i -> i));
 
         List<Forage> result = forageRepository.findByDate(date);
         for (Forage forage : result) {
-            forage.setForager(foragerMap.get(forage.getForager().getId()));
+            forage.Forage(foragerMap.get(forage.getForager().getId()));
             forage.setItem(itemMap.get(forage.getItem().getId()));
         }
 
@@ -78,7 +78,7 @@ public class ForageService {
             forage.setDate(dates.get(random.nextInt(dates.size())));
             forage.setForager(foragers.get(random.nextInt(foragers.size())));
             forage.setItem(items.get(random.nextInt(items.size())));
-            forage.setKilograms(BigDecimal.valueOf(random.nextDouble() * 5.0 + 0.1));
+            forage.setKilograms(random.nextDouble() * 5.0 + 0.1);
             forageRepository.add(forage);
         }
 
@@ -146,7 +146,8 @@ public class ForageService {
 //            result.addErrorMessage("Forager does not exist.");
 //        }
 
-            if (forage.getForager().getId() <= 0) {
+            if (forage.getForager().getId() == null ||
+                    foragerRepository.findById(forage.getForager().getId()) == null) {
                 result.addErrorMessage("Forager does not exist.");
             }
 
