@@ -1,5 +1,6 @@
 package learn.foraging.data;
 
+import learn.foraging.models.Forage;
 import learn.foraging.models.Forager;
 
 import java.util.ArrayList;
@@ -34,6 +35,13 @@ public class ForagerRepositoryDouble implements ForagerRepository {
         return foragers.stream()
                 .filter(i -> i.getState().equalsIgnoreCase(stateAbbr))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public Forager add(Forager forager) throws DataException {
+        forager.setId(java.util.UUID.randomUUID().toString());
+        foragers.add(forager);
+        return forager;
     }
 
     private static Forager makeForager() {

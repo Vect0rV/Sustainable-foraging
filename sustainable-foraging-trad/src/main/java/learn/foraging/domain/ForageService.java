@@ -10,11 +10,9 @@ import learn.foraging.models.Item;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class ForageService {
 
@@ -30,15 +28,19 @@ public class ForageService {
 
     public List<Forage> findByDate(LocalDate date) {
 
-        Map<Integer, Forage> foragerMap = forageRepository.findByDate(date).stream()
-                .collect(Collectors.toMap(i -> Integer.valueOf(i.getId()), i -> i));
+        Map<String, Forage> forageMap = forageRepository.findByDate(date).stream()
+                .collect(Collectors.toMap(i -> (i.getId()), i -> i));
         Map<Integer, Item> itemMap = itemRepository.findAll().stream()
                 .collect(Collectors.toMap(i -> i.getId(), i -> i));
+        Map<String, Forager> foragerMap = foragerRepository.findAll().stream()
+                .collect(Collectors.toMap(i -> i.getId(), i -> i));
+
 
         List<Forage> result = forageRepository.findByDate(date);
         for (Forage forage : result) {
-            forage.Forage(foragerMap.get(forage.getForager().getId()));
+            forage.Forage(forageMap.get(forage.getForager().getId()));
             forage.setItem(itemMap.get(forage.getItem().getId()));
+            forage.setForager(foragerMap.get(forage.getForager().getId()));
         }
 
         return result;

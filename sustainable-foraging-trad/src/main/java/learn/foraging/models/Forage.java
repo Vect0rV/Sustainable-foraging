@@ -16,9 +16,11 @@ public class Forage {
     public Forage() {
     }
 
-//    public Forage(LocalDate date) {
-//        this.date = date;
-//    }
+    public Forage(Forager forager, Item item, Double Kilograms) {
+        this.forager = forager;
+        this.item = item;
+        this.kilograms = Kilograms;
+    }
 
     public String getId() {
         return id;

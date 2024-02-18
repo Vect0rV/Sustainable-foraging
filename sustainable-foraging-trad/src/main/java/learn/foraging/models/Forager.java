@@ -9,6 +9,14 @@ public class Forager {
     private String lastName;
     private String state;
 
+    public Forager() {
+    }
+
+    public Forager(String firstName, String lastName, String state) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.state = state;
+    }
 
     public String getId() {
         return id;
